@@ -1,20 +1,20 @@
+import React, { useState } from "react";
+import { Container, Row } from 'react-bootstrap';
 
-import React, { useState, useEffect } from 'react';
+const ProductItem = (props) => {
+  const [title] = useState(props.data.title);
+  const [description] = useState(props.data.description);
+  const [quantity, setQuantity] = useState(props.data.quantity);
+  const [price] = useState(props.data.price);
 
-const ProductItem = props => {
-	const [title, setTitle] = useState(props.data.title);
-	const [description, setDescription] = useState(props.data.description);
-	const [quantity, setQuantity] = useState(props.data.quantity);
-	const [price, setPrice] = useState(props.data.price);
-
-	return(
-		<div>
-			{title}
-			{description}
-			{quantity}
-			{price}
-		</div>
-	)
-}
+  return (
+    <Container>
+      <Row>{title}</Row>
+      <Row>{description}</Row>
+      <Row>{quantity}</Row>
+      <Row>{price}</Row>
+    </Container>
+  );
+};
 
 export default ProductItem;

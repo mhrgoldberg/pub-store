@@ -28,4 +28,6 @@ class Api::ProductsController < ApplicationController
   def destroy
 
   end
+
+  
 end
