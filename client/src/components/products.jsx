@@ -9,7 +9,7 @@ const Products = props => {
 	const [products, setProducts] = useState([])
 
   useEffect(() => {
-		axios.get('http://localhost:3001/api/products.json')
+		axios.get('/api/products.json')
 			.then( payload => {
 				setProducts(payload.data)
 			})
