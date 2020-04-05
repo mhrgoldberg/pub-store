@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import axios from "axios";
 import ProductItem from "./productItem";
+import { CardDeck, Container } from "react-bootstrap";
 
 const ProductContainer = (props) => {
   const [products, setProducts] = useState([]);
@@ -15,10 +16,12 @@ const ProductContainer = (props) => {
   }, []);
 
   return (
-    <div>
-      {products.map((product) => {
-        return <ProductItem data={product} />;
-      })}
+    <div className="products-container">
+       <CardDeck>
+        {products.map((product) => {
+          return <ProductItem data={product} key={product.id} />;
+        })}
+      </CardDeck>
     </div>
   );
 };

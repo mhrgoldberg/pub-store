@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Row } from 'react-bootstrap';
+import { Button, Card, Badge, Row, Container } from "react-bootstrap";
 
 const ProductItem = (props) => {
   const [title] = useState(props.data.title);
@@ -8,12 +8,20 @@ const ProductItem = (props) => {
   const [price] = useState(props.data.price);
 
   return (
-    <Container>
-      <Row>{title}</Row>
-      <Row>{description}</Row>
-      <Row>{quantity}</Row>
-      <Row>{price}</Row>
-    </Container>
+    <Card style={{ minWidth: "20rem", width: "20rem"}}>
+      <Card.Img variant="top" src="holder.js/100px180" />
+      <Card.Body>
+        <Card.Title>{title}</Card.Title>
+        <Card.Text>
+          {description}
+          {price}
+        </Card.Text>
+      </Card.Body>
+      <Card.Footer className="card-footer">
+          <Button variant="outline-primary">More Details</Button>
+          <Badge variant="secondary">${price}</Badge>
+        </Card.Footer>
+    </Card>
   );
 };
 
