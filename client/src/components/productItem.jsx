@@ -9,7 +9,7 @@ const ProductItem = (props) => {
 
   return (
     <Card style={{ minWidth: "20rem", width: "20rem"}}>
-      <Card.Img variant="top" src="holder.js/100px180" />
+      <Card.Img variant="top" src={"/images/hoodie_beer.jpg"} />
       <Card.Body>
         <Card.Title>{title}</Card.Title>
         <Card.Text>
@@ -18,7 +18,7 @@ const ProductItem = (props) => {
         </Card.Text>
       </Card.Body>
       <Card.Footer className="card-footer">
-          <Button variant="outline-primary">More Details</Button>
+          <Button variant="outline-info">More Details</Button>
           <Badge variant="secondary">${price}</Badge>
         </Card.Footer>
     </Card>

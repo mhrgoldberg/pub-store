@@ -1,8 +1,8 @@
 
 
-// .App {
+  // .App {
 
-// }
+  // }
 
 .products-container {
   max-width: 900px;
@@ -18,5 +18,10 @@
   margin-top: 15px;
 }
 
+.navbar-buttons {
+  width: 160px;
+  display: flex;
+  justify-content: space-between;
+}
 
 @import "~bootstrap/scss/bootstrap";

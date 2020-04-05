@@ -1,23 +1,33 @@
-import React, { useState } from "react";
-import { Button, Nav, Navbar, NavDropdown, Form, FormControl } from "react-bootstrap";
-
+import React from "react";
+import { Button, Nav, Navbar, ButtonGroup } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 const NavBarComponent = (props) => {
-
-
   return (
-		<Navbar bg="dark" variant="dark" expand="sm" sticky="top">
-		<Navbar.Brand href="#home">The Pub</Navbar.Brand>
-		<Navbar.Toggle aria-controls="basic-navbar-nav" />
-		<Navbar.Collapse id="basic-navbar-nav">
-			<Nav className="mr-auto">
-				<Nav.Link href="#home">Home</Nav.Link>
-				<Nav.Link href="#link">Link</Nav.Link>
-			</Nav>
-			<Nav>
-				<Button>Cart</Button>
-			</Nav>
-		</Navbar.Collapse>
-	</Navbar>
+    <Navbar bg="dark" variant="dark" expand="sm" sticky="top">
+      <LinkContainer to="/">
+      <Navbar.Brand>The Pub</Navbar.Brand>
+      </LinkContainer>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="mr-auto">
+        <LinkContainer to="/">
+          <Nav.Link>
+            All Products
+					</Nav.Link>
+        </LinkContainer>
+        </Nav>
+        <Nav className="navbar-buttons">
+          <ButtonGroup>
+          <LinkContainer to="/cart">
+            <Button variant="outline-light">Cart</Button>
+          </LinkContainer>
+          <LinkContainer to="/checkout">
+            <Button variant="outline-light">Checkout</Button>
+          </LinkContainer>
+          </ButtonGroup>
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
   );
 };
 
