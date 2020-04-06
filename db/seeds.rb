@@ -10,26 +10,35 @@ Product.create([
 	{ 
 		title: 'T-Shirt', 
 		description: "Your favorite pub's custom t-shirt. Made of 100% cotton this shirt is great for everyday wear and tear.", 
-		price: 20, 
-		quantity: 10
+		price: 20.00, 
+		quantity: 10,
+		image: "/images/tshirt.jpg",
+		category: "Clothing"
+
   },
   { 
 		title: 'Hoodie', 
 		description: "Your favorite pub's custom Hoodie. Made of 100% cotton this hoodie will keep you warm all day.", 
-		price: 40, 
-		quantity: 5
+		price: 40.00, 
+		quantity: 5,
+		image: "/images/hoodie_beer.jpg",
+		category: "Clothing"
   },
   { 
 		title: 'Pint Glass', 
 		description: "Your favorite pub's custom Pint Glass. Drink beer at home from your favorite sports pub!", 
 		price: 8, 
-		quantity: 10
+		quantity: 10.00,
+		image: "/images/pint_at_bar.jpg",
+		category: "Souvenir"
   },
   {
 		title: 'World Cup Viewing Party Tickets', 
 		description: "We are having a viewing party for the world cup. With your ticket you get a collectible ping glass as well as 10% off all drinks during the event.", 
 		price: 14, 
-		quantity: 10
+		quantity: 10.00,
+		image: "/images/tickets.jpg",
+		category: "Events"
   }
 
   

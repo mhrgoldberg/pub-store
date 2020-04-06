@@ -1,16 +1,19 @@
 
 
-  // .App {
-
-  // }
+  .App {
+    // display: flex;
+    // flex-direction: column;
+    // align-items: center;
+  }
 
 .products-container {
-  max-width: 900px;
+  max-width: 960px;
 }
 
 .main-container {
   display: flex;
-  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .card-deck .card {
@@ -18,10 +21,34 @@
   margin-top: 15px;
 }
 
+.card-deck {
+  margin: 15px !important;
+}
+
+.card-footer .input-group {
+  margin-right: 20px;
+  max-width: 100px;
+}
+
+.btn-toolbar {
+  justify-content: center !important;
+}
+
 .navbar-buttons {
   width: 160px;
   display: flex;
   justify-content: space-between;
+}
+
+
+.banner-container {
+  max-width: 900px;
+
+}
+
+.navbar {
+  margin: 0 auto;
+  max-width: 900px !important;
 }
 
 @import "~bootstrap/scss/bootstrap";
