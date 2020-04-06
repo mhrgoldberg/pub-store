@@ -27,7 +27,6 @@ const ProductItem = ({ setCart, cart, data, showToast, setShowToast }) => {
         });
       });
       setShowToast(true);
-      console.log(cart);
     }
   };
 
