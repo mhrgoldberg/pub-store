@@ -5,8 +5,7 @@ import axios from "axios";
 
 import NavBarComponent from "./components/navbar";
 import Home from "./components/home/home";
-import Cart from "./components/cart";
-import Checkout from "./components/checkout";
+import Checkout from "./components/checkout/checkout";
 import CartModal from "./components/cartModal";
 
 
@@ -46,9 +45,6 @@ function App() {
           cart={cart}
         />
         <Switch>
-          <Route path="/cart">
-            <Cart cart={cart} setCart={setCart} />
-          </Route>
           <Route path="/checkout">
             <Checkout cart={cart} />
           </Route>

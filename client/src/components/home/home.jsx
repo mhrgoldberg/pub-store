@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import ProductIndex from "./productIndex";
+import ProductIndex from "./products/productIndex";
 import Banner from "./Banner";
 import ToastAlert from "../toastAlert";
 
