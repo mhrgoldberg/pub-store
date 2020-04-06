@@ -1,21 +1,35 @@
 import React, { useState } from "react";
-import { Button, Card, ButtonToolbar, InputGroup, FormControl } from "react-bootstrap";
+import {
+  Button,
+  Card,
+  ButtonToolbar,
+  InputGroup,
+  FormControl,
+} from "react-bootstrap";
 
-const ProductItem = ( {setCart, cart, data} ) => {
+const ProductItem = ({ setCart, cart, data }) => {
   const [title] = useState(data.title);
   const [description] = useState(data.description);
   const [stockQuantity, setStockQuantity] = useState(data.quantity);
-  const [cartQuantity, setCartQuantity] = useState(0)
+  const [cartQuantity, setCartQuantity] = useState(1);
   const [price] = useState(data.price);
 
-  // const addToCart = () => {
-  //   setStockQuantity(stockQuantity--);
-  //   setCartQuantity(cartQuantity++);
-  // }
+  const addToCart = () => {
+    if (cartQuantity < stockQuantity) {
+      setStockQuantity(stockQuantity - cartQuantity);
+      setCart({
+        [data.id]: {
+          data,
+          cartQuantity:
+            (cart[data.id] ? cart[data.id].cartQuantity : 0) + cartQuantity
+        },
+      });
+    }
+  };
 
   return (
     <Card style={{ minWidth: "20rem", width: "20rem" }}>
-      <Card.Img variant="top" src={props.data.image} />
+      <Card.Img variant="top" src={data.image} />
       <Card.Body>
         <Card.Title>
           {title} | ${price}
@@ -29,14 +43,17 @@ const ProductItem = ( {setCart, cart, data} ) => {
               <InputGroup.Text id="btnGroupAddon">Qty</InputGroup.Text>
             </InputGroup.Prepend>
             <FormControl
-              value="1"
+              value={cartQuantity}
+              onChange={(e) => {
+                setCartQuantity(parseInt(e.target.value));
+              }}
               type="number"
               aria-label="product-quantity"
               aria-describedby="btnGroupAddon"
             />
           </InputGroup>
-          <Button onClick={() => addToCart} variant="outline-danger">
-            Add to Cart <i class="fas fa-cart-plus"></i>
+          <Button onClick={addToCart} variant="outline-danger">
+            Add to Cart
           </Button>
         </ButtonToolbar>
       </Card.Footer>

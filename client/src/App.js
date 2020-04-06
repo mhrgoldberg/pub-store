@@ -11,7 +11,7 @@ import Checkout from "./components/checkout";
 import "./App.scss";
 
 function App() {
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState({});
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
