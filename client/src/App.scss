@@ -28,7 +28,7 @@
 
 .card-footer .input-group {
   margin-right: 20px;
-  max-width: 100px;
+  max-width: 120px;
 }
 
 .btn-toolbar {
@@ -63,6 +63,22 @@
 
 .bi-bag {
   margin-bottom: 5px;
+}
+
+.cart-li {
+  display: flex !important;
+  justify-content: space-between;
+}
+
+.cart-control {
+  display: flex;
+  align-items: center;
+  width: 370px;
+  justify-content: space-between;
+  .input-group {
+    width: 120px;
+  }
+
 }
 
 @import "~bootstrap/scss/bootstrap";

@@ -1,6 +1,8 @@
 import React from "react";
 import { Button, Nav, Navbar, ButtonGroup } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 const NavBarComponent = ({setModalShow}) => {
   return (
     <Navbar bg="light" variant="light" expand="md" sticky="top">
@@ -27,8 +29,8 @@ const NavBarComponent = ({setModalShow}) => {
         <Nav className="navbar-buttons">
           <ButtonGroup>
               <Button variant="outline-dark" onClick={() => setModalShow(true)}>
-                Cart{" "}
-                <svg
+                <FontAwesomeIcon icon="shopping-cart" />
+                {/* <svg
                   className="bi bi-bag"
                   width="1em"
                   height="1em"
@@ -42,10 +44,10 @@ const NavBarComponent = ({setModalShow}) => {
                     clipRule="evenodd"
                   />
                   <path d="M8 1.5A2.5 2.5 0 005.5 4h-1a3.5 3.5 0 117 0h-1A2.5 2.5 0 008 1.5z" />
-                </svg>
+                </svg> */}
               </Button>
             <LinkContainer to="/checkout">
-              <Button variant="outline-dark" >Checkout</Button>
+              <Button variant="outline-dark"><FontAwesomeIcon icon="cash-register" /></Button>
             </LinkContainer>
           </ButtonGroup>
         </Nav>  

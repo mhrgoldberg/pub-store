@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   Button,
   Card,
@@ -48,30 +49,15 @@ const ProductItem = ({ setCart, cart, data, showToast, setShowToast }) => {
             <FormControl
               value={cartQuantity}
               onChange={(e) => {
-                setCartQuantity(parseInt(e.target.value));
+                setCartQuantity(parseInt(e.currentTarget.value));
               }}
               type="number"
               aria-label="product-quantity"
               aria-describedby="btnGroupAddon"
             />
           </InputGroup>
-          <Button onClick={addToCart} variant="outline-danger">
-            Add to Cart{" "}
-            <svg
-              className="bi bi-bag"
-              width="1em"
-              height="1em"
-              viewBox="0 0 16 16"
-              fill="currentColor"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fillRule="evenodd"
-                d="M14 5H2v9a1 1 0 001 1h10a1 1 0 001-1V5zM1 4v10a2 2 0 002 2h10a2 2 0 002-2V4H1z"
-                clipRule="evenodd"
-              />
-              <path d="M8 1.5A2.5 2.5 0 005.5 4h-1a3.5 3.5 0 117 0h-1A2.5 2.5 0 008 1.5z" />
-            </svg>
+          <Button onClick={addToCart} variant="success">
+            <FontAwesomeIcon icon="cart-plus" />
           </Button>
         </ButtonToolbar>
       </Card.Footer>

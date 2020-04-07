@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { Switch, HashRouter, Route } from "react-router-dom";
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faEdit, faTrash, faCartPlus, faShoppingCart, faCashRegister } from '@fortawesome/free-solid-svg-icons'
+
 
 import axios from "axios";
 
 import NavBarComponent from "./components/navbar";
 import Home from "./components/home/home";
 import Checkout from "./components/checkout/checkout";
-import CartModal from "./components/cartModal";
+import CartModal from "./components/cart/cartModal";
 
 
 import "./App.scss";
+
+library.add(faEdit, faTrash, faCartPlus, faShoppingCart, faCashRegister)
 
 function App() {
   const [cart, setCart] = useState({});
@@ -41,6 +46,7 @@ function App() {
         <NavBarComponent setModalShow={setModalShow} />
         <CartModal
           setModalShow={setModalShow}
+          setCart={setCart}
           modalShow={modalShow}
           cart={cart}
         />

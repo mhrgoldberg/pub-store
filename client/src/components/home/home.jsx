@@ -3,13 +3,11 @@ import ProductIndex from "./products/productIndex";
 import Banner from "./Banner";
 import ToastAlert from "../toastAlert";
 
-const Home = ({ products, cart, setCart}) => {
+const Home = ({ products, cart, setCart }) => {
   const [showToast, setShowToast] = useState(false);
   return (
     <Fragment>
-      <div
-        className="main-container"   
-      >
+      <div className="main-container">
         <div
           style={{
             position: "fixed",
