@@ -2,7 +2,14 @@ import React from "react";
 import ProductItem from "./productItem";
 import { CardDeck } from "react-bootstrap";
 
-const ProductIndex = ({ products, cart, setCart, setShowToast, showToast }) => {
+const ProductIndex = ({
+  products,
+  cart,
+  setCart,
+  setShowToast,
+  showToast,
+  setShowErrorToast,
+}) => {
   return (
     <div className="products-container">
       <CardDeck>
@@ -14,6 +21,7 @@ const ProductIndex = ({ products, cart, setCart, setShowToast, showToast }) => {
               setCart={setCart}
               key={product.id}
               setShowToast={setShowToast}
+              setShowErrorToast={setShowErrorToast}
               showToast={showToast}
             />
           );

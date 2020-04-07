@@ -8,26 +8,39 @@ import {
   FormControl,
 } from "react-bootstrap";
 
-const ProductItem = ({ setCart, cart, data, showToast, setShowToast }) => {
+const ProductItem = ({
+  setCart,
+  cart,
+  data,
+  setShowToast,
+  setShowErrorToast,
+}) => {
+  let cartQuantity 
+  if (cart[data.id]) cartQuantity = cart[data.id].cartQuantity;
   const [title] = useState(data.title);
   const [description] = useState(data.description);
-  const [stockQuantity, setStockQuantity] = useState(data.quantity);
-  const [cartQuantity, setCartQuantity] = useState(1);
+  const [stockQuantity, setStockQuantity] = useState(
+    cartQuantity || data.quantity
+  );
+  const [itemQuantity, setItemQuantity] = useState(1);
   const [price] = useState(data.price);
 
   const addToCart = () => {
-    if (cartQuantity < stockQuantity) {
-      setStockQuantity(stockQuantity - cartQuantity);
+    if (itemQuantity <= stockQuantity) {
+      setStockQuantity(stockQuantity - itemQuantity);
+      data["quantity"] = stockQuantity;
       setCart((prevState) => {
         return Object.assign({}, prevState, {
           [data.id]: {
             data,
             cartQuantity:
-              (cart[data.id] ? cart[data.id].cartQuantity : 0) + cartQuantity,
+              (cart[data.id] ? cart[data.id].cartQuantity : 0) + itemQuantity,
           },
         });
       });
       setShowToast(true);
+    } else {
+      setShowErrorToast(true);
     }
   };
 
@@ -36,7 +49,7 @@ const ProductItem = ({ setCart, cart, data, showToast, setShowToast }) => {
       <Card.Img variant="top" src={data.image} />
       <Card.Body>
         <Card.Title>
-          {title} | ${parseInt(price).toFixed(2)}
+          {title} | ${parseFloat(price).toFixed(2)}
         </Card.Title>
         <Card.Text>{description}</Card.Text>
       </Card.Body>
@@ -47,9 +60,9 @@ const ProductItem = ({ setCart, cart, data, showToast, setShowToast }) => {
               <InputGroup.Text id="btnGroupAddon">Qty</InputGroup.Text>
             </InputGroup.Prepend>
             <FormControl
-              value={cartQuantity}
+              value={itemQuantity}
               onChange={(e) => {
-                setCartQuantity(parseInt(e.currentTarget.value));
+                setItemQuantity(parseFloat(e.currentTarget.value));
               }}
               type="number"
               aria-label="product-quantity"

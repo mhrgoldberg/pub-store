@@ -1,8 +1,15 @@
 import React from "react";
 import { Modal, Button, Alert, ListGroup } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 import CartItem from "./cartItem";
 
-const CartModal = ({ cart, setCart, modalShow, setModalShow }) => {
+const CartModal = ({
+  cart,
+  setCart,
+  modalShow,
+  setModalShow,
+  setShowErrorToast,
+}) => {
   const handleClose = () => setModalShow(false);
   let items = null;
   if (Object.keys(cart).length === 0) {
@@ -20,8 +27,10 @@ const CartModal = ({ cart, setCart, modalShow, setModalShow }) => {
               data={cartItem.data}
               itemId={cartItem.data.id}
               title={cartItem.data.title}
-              quantity={cartItem.cartQuantity}
+              cartQuantity={cartItem.cartQuantity}
               setCart={setCart}
+              cart={cart}
+              setShowErrorToast={setShowErrorToast}
               key={cartItem.data.id}
             />
           );
@@ -36,12 +45,16 @@ const CartModal = ({ cart, setCart, modalShow, setModalShow }) => {
       </Modal.Header>
       <Modal.Body>{items}</Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
-          Save Changes
-        </Button>
-        <Button variant="primary" onClick={handleClose}>
-          Checkout
-        </Button>
+        <LinkContainer to="/">
+          <Button variant="secondary" onClick={handleClose}>
+            Back to Shopping
+          </Button>
+        </LinkContainer>
+        <LinkContainer to="/checkout/cart">
+          <Button variant="primary" onClick={handleClose}>
+            Checkout
+          </Button>
+        </LinkContainer>
       </Modal.Footer>
     </Modal>
   );

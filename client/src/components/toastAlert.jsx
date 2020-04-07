@@ -1,7 +1,7 @@
 import React from "react";
 import { Toast } from "react-bootstrap";
 
-const ToastAlert = ({ showToast, setShowToast }) => {
+const ToastAlert = ({ showToast, setShowToast, message, title }) => {
   return (
     <Toast
       onClose={() => setShowToast(false)}
@@ -10,9 +10,9 @@ const ToastAlert = ({ showToast, setShowToast }) => {
       autohide
     >
       <Toast.Header>
-        <strong className="mr-auto">Success</strong>
+        <strong className="mr-auto">{title}</strong>
       </Toast.Header>
-      <Toast.Body>Item has been added to your cart!</Toast.Body>
+      <Toast.Body>{message}</Toast.Body>
     </Toast>
   );
 };

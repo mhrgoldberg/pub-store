@@ -1,25 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { Switch, HashRouter, Route } from "react-router-dom";
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faEdit, faTrash, faCartPlus, faShoppingCart, faCashRegister } from '@fortawesome/free-solid-svg-icons'
-
-
+import { library } from "@fortawesome/fontawesome-svg-core";
+import {
+  faEdit,
+  faTrash,
+  faCartPlus,
+  faShoppingCart,
+  faCashRegister,
+} from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 
+import ToastAlert from "./components/toastAlert";
 import NavBarComponent from "./components/navbar";
 import Home from "./components/home/home";
-import Checkout from "./components/checkout/checkout";
+import ConfirmCart from "./components/checkout/confirmCart";
 import CartModal from "./components/cart/cartModal";
-
 
 import "./App.scss";
 
-library.add(faEdit, faTrash, faCartPlus, faShoppingCart, faCashRegister)
+library.add(faEdit, faTrash, faCartPlus, faShoppingCart, faCashRegister);
 
 function App() {
   const [cart, setCart] = useState({});
   const [products, setProducts] = useState([]);
   const [modalShow, setModalShow] = useState(false);
+  const [showToast, setShowToast] = useState(false);
+  const [showErrorToast, setShowErrorToast] = useState(false);
 
   useEffect(() => {
     axios
@@ -48,23 +54,86 @@ function App() {
           setModalShow={setModalShow}
           setCart={setCart}
           modalShow={modalShow}
+          setShowErrorToast={setShowErrorToast}
           cart={cart}
         />
+        <div
+          style={{
+            position: "fixed",
+            top: 56,
+            right: 0,
+            zIndex: 50000,
+          }}
+        >
+          <ToastAlert
+            setShowToast={setShowToast}
+            showToast={showToast}
+            title="Success"
+            message="Item has been added to your cart!"
+          />
+        </div>
+        <div
+          style={{
+            position: "fixed",
+            top: 56,
+            right: 0,
+            zIndex: 50000,
+          }}
+        >
+          <ToastAlert
+            setShowToast={setShowErrorToast}
+            showToast={showErrorToast}
+            title="Out of Stock"
+            message="Sorry, please try another Item."
+          />
+        </div>
         <Switch>
-          <Route path="/checkout">
-            <Checkout cart={cart} />
+          <Route path="/checkout/cart">
+            <ConfirmCart cart={cart} setCart={setCart} />
           </Route>
           <Route path="/clothing">
-            <Home products={clothingProducts} cart={cart} setCart={setCart} />
+            <Home
+              products={clothingProducts}
+              cart={cart}
+              setCart={setCart}
+              showToast={showToast}
+              showErrorToast={showErrorToast}
+              setShowToast={setShowToast}
+              setShowErrorToast={setShowErrorToast}
+            />
           </Route>
           <Route path="/souvenir">
-            <Home products={souvenirProducts} cart={cart} setCart={setCart} />
+            <Home
+              products={souvenirProducts}
+              cart={cart}
+              setCart={setCart}
+              showToast={showToast}
+              showErrorToast={showErrorToast}
+              setShowToast={setShowToast}
+              setShowErrorToast={setShowErrorToast}
+            />
           </Route>
           <Route path="/events">
-            <Home products={eventsProducts} cart={cart} setCart={setCart} />
+            <Home
+              products={eventsProducts}
+              cart={cart}
+              setCart={setCart}
+              showToast={showToast}
+              showErrorToast={showErrorToast}
+              setShowToast={setShowToast}
+              setShowErrorToast={setShowErrorToast}
+            />
           </Route>
           <Route path="/">
-            <Home products={products} cart={cart} setCart={setCart} />
+            <Home
+              products={products}
+              cart={cart}
+              setCart={setCart}
+              showToast={showToast}
+              showErrorToast={showErrorToast}
+              setShowToast={setShowToast}
+              setShowErrorToast={setShowErrorToast}
+            />
           </Route>
         </Switch>
       </HashRouter>
