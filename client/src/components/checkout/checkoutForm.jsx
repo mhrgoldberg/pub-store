@@ -46,7 +46,7 @@ const CheckoutForm = (props) => {
           isValid,
           errors,
         }) => (
-          <Form noValidate onSubmit={handleSubmit}>
+          <Form className="checkout-form" noValidate onSubmit={handleSubmit}>
             <br />
             <ProgressBar animated now={66} />
             <br />
