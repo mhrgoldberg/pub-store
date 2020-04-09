@@ -39,7 +39,7 @@ const CartModal = ({
     );
   }
   return (
-    <Modal show={modalShow} onHide={handleClose}>
+    <Modal show={modalShow} size="md" onHide={handleClose}>
       <Modal.Header closeButton>
         <Modal.Title>Shopping Cart</Modal.Title>
       </Modal.Header>

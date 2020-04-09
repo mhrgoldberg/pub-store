@@ -5,6 +5,8 @@ import {
   ListGroup,
   Button,
   ButtonGroup,
+  Row,
+  Col
 } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -13,7 +15,6 @@ const CartItem = ({ data, cartQuantity, setCart, cart, setShowErrorToast }) => {
   const [localCartQuantity, setLocalCartQuantity] = useState(cartQuantity);
   const [editQty, setEditQty] = useState(false);
   let qtyComponent;
-  let error;
   const updateCartItem = () => {
     if (Number(localCartQuantity) - data.quantity <= stockQuantity) {
       setStockQuantity(stockQuantity - localCartQuantity);
@@ -52,18 +53,18 @@ const CartItem = ({ data, cartQuantity, setCart, cart, setShowErrorToast }) => {
       </InputGroup>
     );
   } else {
-    qtyComponent = <span>Quantity: {localCartQuantity}</span>;
+    qtyComponent = <Col>Qty: {localCartQuantity}</Col>;
   }
 
   
   return (
     <ListGroup.Item className="cart-li">
-      <span className="cart-control">{data.title}</span>
-      <span className="cart-control">
+      <Row style={{width: "100%"}}>
+      <Col className="cart-control">{data.title}</Col>
+      <Col className="cart-control">
         {qtyComponent}
-        {error}
-      </span>
-      <span>
+      </Col>
+      <Col lg="2" className="cart-control">
         <ButtonGroup>
         <Button
           variant={!editQty ? "warning" : "success"}
@@ -92,7 +93,8 @@ const CartItem = ({ data, cartQuantity, setCart, cart, setShowErrorToast }) => {
           <FontAwesomeIcon icon="trash" />
         </Button>
         </ButtonGroup>
-      </span>
+      </Col>
+      </Row>
     </ListGroup.Item>
   );
 };

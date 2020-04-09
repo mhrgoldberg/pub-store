@@ -1,10 +1,8 @@
-
-
-  // .App {
-    // display: flex;
-    // flex-direction: column;
-    // align-items: center;
-  // }
+// .App {
+// display: flex;
+// flex-direction: column;
+// align-items: center;
+// }
 
 .products-container {
   max-width: 960px;
@@ -41,10 +39,8 @@
   justify-content: space-between;
 }
 
-
 .banner-container {
   max-width: 900px;
-
 }
 
 .navbar {
@@ -52,7 +48,7 @@
   // max-width: 900px !important;
 }
 
-.nav-span{
+.nav-span {
   max-width: 900px;
   display: flex;
   flex-direction: flex-start;
@@ -77,15 +73,30 @@
   .input-group {
     width: 120px;
   }
-
 }
 
 .final-cart {
   max-width: 930px !important;
 }
 
-.col {
+.checkout-row {
+  padding: 12px 20px;
+}
+
+.checkout-total {
+  text-align: end;
+}
+
+.checkout-quantity {
   text-align: center;
+}
+
+.checkout-item-price {
+  text-align: end;
+}
+
+.checkout-item-title {
+  text-align: start;
 }
 
 @import "~bootstrap/scss/bootstrap";

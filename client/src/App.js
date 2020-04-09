@@ -14,6 +14,7 @@ import ToastAlert from "./components/toastAlert";
 import NavBarComponent from "./components/navbar";
 import Home from "./components/home/home";
 import ConfirmCart from "./components/checkout/confirmCart";
+import CheckoutForm from "./components/checkout/checkoutForm"
 import CartModal from "./components/cart/cartModal";
 
 import "./App.scss";
@@ -90,6 +91,9 @@ function App() {
         <Switch>
           <Route path="/checkout/cart">
             <ConfirmCart cart={cart} setCart={setCart} />
+          </Route>
+          <Route path="/checkout/form">
+            <CheckoutForm />
           </Route>
           <Route path="/clothing">
             <Home

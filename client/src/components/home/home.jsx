@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React from "react";
 import ProductIndex from "./products/productIndex";
 import Banner from "./Banner";
 
@@ -13,7 +13,6 @@ const Home = ({
   showErrorToast,
 }) => {
   return (
-    <Fragment>
       <div className="main-container">
         
         <Banner />
@@ -26,7 +25,6 @@ const Home = ({
           setShowErrorToast={setShowErrorToast}
         />
       </div>
-    </Fragment>
   );
 };
 
