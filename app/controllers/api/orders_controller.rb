@@ -4,6 +4,7 @@ class Api::OrdersController < ApplicationController
 
   # GET /orders/1
   def show
+    @order = Order.find(params[:id])
     render json: @order
   end
 
@@ -20,15 +21,10 @@ class Api::OrdersController < ApplicationController
 
 
   private
-    def set_order
-      @order = Order.find(params[:id])
-    end
-
-    # Only allow a trusted parameter "white list" through.
     def order_params
       params.require(:order).permit(
         :firstName, :lastName, :email, :address, :city, :state, :zip,
-        :newsLetter
+        :newsLetter, products: []
       )
     end
 end
