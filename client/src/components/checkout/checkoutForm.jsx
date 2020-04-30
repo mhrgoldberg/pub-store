@@ -3,7 +3,7 @@ import { Formik } from "formik";
 import { Form, ProgressBar, Col, Button } from "react-bootstrap";
 import * as yup from "yup";
 
-const CheckoutForm = (props) => {
+const CheckoutForm = ({cart}) => {
   const schema = yup.object({
     firstName: yup.string().required("First name is required"),
     lastName: yup.string().required("Last name is required"),
@@ -17,9 +17,10 @@ const CheckoutForm = (props) => {
     zip: yup.string().min(5).max(5).required("Zip code is required"),
     newsLetter: yup.bool(),
   });
+  const products = Object.values(cart).length > 0 ? Object.values(cart).map(item => item.data.id) : []
 
   return (
-    <div className="main-container">
+   <div className="main-container">
       <Formik
         validationSchema={schema}
         initialValues={{
@@ -31,6 +32,7 @@ const CheckoutForm = (props) => {
           state: "",
           zip: "",
           newsLetter: false,
+          products
         }}
         onSubmit={(values, { setSubmitting }) => {
           alert(JSON.stringify(values, null, 2));

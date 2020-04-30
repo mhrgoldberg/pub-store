@@ -93,7 +93,7 @@ function App() {
             <ConfirmCart cart={cart} setCart={setCart} />
           </Route>
           <Route path="/checkout/form">
-            <CheckoutForm />
+            <CheckoutForm cart={cart} />
           </Route>
           <Route path="/clothing">
             <Home
