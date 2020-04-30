@@ -6,5 +6,18 @@ class Order < ApplicationRecord
 	 
 	has_many :order_products
 	has_many :products, through: :order_products
+
+	def add_order_products(order_id, product_ids)
+		entries_to_create = []
+		product_ids.each do |prooduct_id|
+			entries_to_create << { product_id: product_id, order_id: order_id }
+			update_stock_for_order(product_id)
+		end
+		OrderProduct.create(entries_to_create)
+	end
 	
+
+	def update_stock_for_order(product_id)
+		Product.find(product_id)
+	end
 end

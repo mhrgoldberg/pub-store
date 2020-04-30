@@ -1,18 +1,17 @@
-class Api::OrdersController < ApplicationController
-  before_action :set_order, only: [:show]
+class Api::OrdersController < ApplicationController 
 
-
-  # GET /orders/1
+  # GET /api/orders/1
   def show
     @order = Order.find(params[:id])
     render json: @order
   end
 
-  # POST /orders
+  # POST /api/orders
   def create
     @order = Order.new(order_params)
 
     if @order.save
+      add_order_products(@order.id, params[products])
       render json: @order, status: :created, location: @order
     else
       render json: @order.errors, status: 422
@@ -22,6 +21,7 @@ class Api::OrdersController < ApplicationController
 
   private
     def order_params
+      debugger
       params.require(:order).permit(
         :firstName, :lastName, :email, :address, :city, :state, :zip,
         :newsLetter, products: []
