@@ -5,5 +5,7 @@ class Product < ApplicationRecord
   validates :category, inclusion: { in: %w(Clothing Souvenir Events),
      message: '%{value} is not a valid category' }
   
+  has_many :order_products
+  has_many :orders, through: :order_products  
   
 end
