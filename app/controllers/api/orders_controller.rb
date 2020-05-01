@@ -3,7 +3,7 @@ class Api::OrdersController < ApplicationController
   # GET /api/orders/1
   def show
     @order = Order.find(params[:id])
-    render json: @order
+    render json: {order: @order, products: @order.products}
   end
 
   # POST /api/orders

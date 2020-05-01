@@ -16,6 +16,7 @@ import Home from "./components/home/home";
 import ConfirmCart from "./components/checkout/confirmCart";
 import CheckoutForm from "./components/checkout/checkoutForm"
 import CartModal from "./components/cart/cartModal";
+import OrderComplete from "./components/checkout/orderComplete";
 
 import "./App.scss";
 
@@ -127,6 +128,11 @@ function App() {
               setShowToast={setShowToast}
               setShowErrorToast={setShowErrorToast}
             />
+          </Route>
+          <Route path="/complete/:orderId">
+              <OrderComplete>
+
+              </OrderComplete>
           </Route>
           <Route path="/">
             <Home

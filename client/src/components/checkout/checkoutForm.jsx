@@ -2,9 +2,10 @@ import React from "react";
 import { Formik } from "formik";
 import { Form, ProgressBar, Col, Button } from "react-bootstrap";
 import axios from "axios";
+import { withRouter } from "react-router-dom";
 import * as yup from "yup";
 
-const CheckoutForm = ({ cart }) => {
+const CheckoutForm = ({ history, cart }) => {
   const schema = yup.object({
     firstName: yup.string().required("First name is required"),
     lastName: yup.string().required("Last name is required"),
@@ -27,7 +28,6 @@ const CheckoutForm = ({ cart }) => {
         productsQuantity.push(product.data.id);
       }
     }
-    console.log(productsQuantity);
     return productsQuantity;
   };
 
@@ -49,10 +49,8 @@ const CheckoutForm = ({ cart }) => {
           state: "",
           zip: "",
           newsLetter: false,
-          products
         }}
         onSubmit={(values, { setSubmitting }) => {
-          alert(JSON.stringify(values, null, 2));
           axios
             .post("/api/orders", {
               firstName: values.firstName,
@@ -66,7 +64,7 @@ const CheckoutForm = ({ cart }) => {
               products,
             })
             .then(function (response) {
-              console.log(response);
+              history.push(`/complete/${response.data.id}`);
             })
             .catch(function (error) {
               console.log(error);
@@ -224,4 +222,4 @@ const CheckoutForm = ({ cart }) => {
   );
 };
 
-export default CheckoutForm;
+export default withRouter(CheckoutForm);

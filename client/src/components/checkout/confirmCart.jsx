@@ -37,7 +37,9 @@ const ConfirmCart = ({ cart }) => {
           sum += parseFloat(cartItem.data.price) * cartItem.cartQuantity;
           return (
             <Row className="checkout-row">
-              <Col xs={8} className="checkout-item-title">{cartItem.data.title}</Col>
+              <Col xs={8} className="checkout-item-title">
+                {cartItem.data.title}
+              </Col>
               <Col>Quantity: {cartItem.cartQuantity}</Col>
               <Col className="checkout-item-price">
                 ${parseFloat(cartItem.data.price).toFixed(2)}
@@ -52,9 +54,9 @@ const ConfirmCart = ({ cart }) => {
         </ListGroup.Item>
         <br />
         <LinkContainer to="/checkout/form">
-        <Button variant="primary" size="lg" block>
-          Confirm Cart and Enter Shipping Info
-        </Button>
+          <Button variant="primary" size="lg" block>
+            Confirm Cart and Enter Shipping Info
+          </Button>
         </LinkContainer>
       </Container>
     );
