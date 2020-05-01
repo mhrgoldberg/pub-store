@@ -1,9 +1,10 @@
 import React from "react";
 import { Formik } from "formik";
 import { Form, ProgressBar, Col, Button } from "react-bootstrap";
+import axios from "axios";
 import * as yup from "yup";
 
-const CheckoutForm = ({cart}) => {
+const CheckoutForm = ({ cart }) => {
   const schema = yup.object({
     firstName: yup.string().required("First name is required"),
     lastName: yup.string().required("Last name is required"),
@@ -17,10 +18,26 @@ const CheckoutForm = ({cart}) => {
     zip: yup.string().min(5).max(5).required("Zip code is required"),
     newsLetter: yup.bool(),
   });
-  const products = Object.values(cart).length > 0 ? Object.values(cart).map(item => item.data.id) : []
+
+  const createProductsArray = (products) => {
+    const productsQuantity = [];
+    for (let i = 0; i < products.length; i++) {
+      const product = products[i];
+      for (let j = 0; j < product.cartQuantity; j++) {
+        productsQuantity.push(product.data.id);
+      }
+    }
+    console.log(productsQuantity);
+    return productsQuantity;
+  };
+
+  const products =
+    Object.values(cart).length > 0
+      ? createProductsArray(Object.values(cart))
+      : [];
 
   return (
-   <div className="main-container">
+    <div className="main-container">
       <Formik
         validationSchema={schema}
         initialValues={{
@@ -36,6 +53,24 @@ const CheckoutForm = ({cart}) => {
         }}
         onSubmit={(values, { setSubmitting }) => {
           alert(JSON.stringify(values, null, 2));
+          axios
+            .post("/api/orders", {
+              firstName: values.firstName,
+              lastName: values.lastName,
+              email: values.email,
+              address: values.address,
+              city: values.city,
+              state: values.state,
+              zip: values.zip,
+              newsletter: values.newsLetter,
+              products,
+            })
+            .then(function (response) {
+              console.log(response);
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
           setSubmitting(false);
         }}
       >

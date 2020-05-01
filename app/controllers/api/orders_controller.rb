@@ -11,8 +11,8 @@ class Api::OrdersController < ApplicationController
     @order = Order.new(order_params)
 
     if @order.save
-      add_order_products(@order.id, params[products])
-      render json: @order, status: :created, location: @order
+      @order.add_order_products(@order.id, params[:products])
+      render json: @order, status: :created
     else
       render json: @order.errors, status: 422
     end
@@ -21,10 +21,9 @@ class Api::OrdersController < ApplicationController
 
   private
     def order_params
-      debugger
       params.require(:order).permit(
         :firstName, :lastName, :email, :address, :city, :state, :zip,
-        :newsLetter, products: []
+        :newsLetter
       )
     end
 end
